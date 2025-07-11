@@ -7,9 +7,13 @@ class Socio {
  
     method idiomasHablados() = idiomasHablados
 
+    method edad() = edad
+
     method esAdoradorDelSol() = actividades.forEach({a => a.sirveParaBroncearse()})
 
     method actividadesEsforzadas() = actividades.filter({a => a.implicaEsfuerzo()})
+
+    method actividades() = actividades
 
     method registrarActividad(unaActividad){
         if(maximoDeActividades >= actividades.size())
@@ -18,7 +22,7 @@ class Socio {
             self.error("Se superó la cantidad maxima de actividades que puede realizar")
     }
 
-    method leAtrae(unaActividad){}
+    method leAtrae(unaActividad){return true}
 }
 
 class SocioTranquilo inherits Socio {
@@ -37,7 +41,7 @@ class SocioRelajado inherits Socio {
 
     //Verifica que la interseccion entre el conj idiomasHablados del socio y el conj idiomas de la activida no este vacio,
     //Si no esta vacio quiere decir que comparten al menos un idioma y que la actividad le atrae al socio.
-    
+
     override method leAtrae(unaActividad) = 
         not self.idiomasHablados().intersection(unaActividad.idiomas()).isEmpty()
 }

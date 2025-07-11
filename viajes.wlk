@@ -6,13 +6,12 @@ class Viaje {
 
     method sirveParaBroncearse() = true
 
-    method esInteresante() = idiomasUsados > 1
+    method esInteresante() = idiomasUsados.size() > 1
 
     method implicaEsfuerzo() = true
     
-    method esRecomendadaPara(unSocio) = self.esInteresante() and
-                                        unSocio.leAtrae(self) and
-                                        not unSocio.actividades().contains(self)
+    method esRecomendadaPara(unSocio) = self.esInteresante() and 
+                                        unSocio.leAtrae(self) and !unSocio.actividades().contains(self)
 }
 
 class ViajePlaya inherits Viaje{

@@ -1,9 +1,34 @@
-import example.pepita
+import socios.*
+import viajes.*
 
-describe "group of tests for pepita" {
+describe "Grupo de test de Mutual" {
 
-  test "pepita has initial energy" {
-    assert.equals(100, pepita.energy())
-  }
+    //Socios:
+        const megan    = new Socio (actividades = [], maximoDeActividades = 5, edad = 28, idiomasHablados = #{"ingles", "coreano", "chino"})
+        const daniela  = new Socio (actividades = [], maximoDeActividades = 8, edad = 22, idiomasHablados = #{"español", "ingles", "portugues"})
+        const manon    = new Socio (actividades = [], maximoDeActividades = 2, edad = 30, idiomasHablados = #{"ingles", "sueco"})
+        const lara     = new SocioRelajado  (actividades = [], maximoDeActividades = 10, edad = 10, idiomasHablados = #{"ingles", "portugues"})
+        const yoonchae = new SocioTranquilo (actividades = [], maximoDeActividades = 7, edad = 45, idiomasHablados = #{"ingles", "coreano"})
+        const sophia   = new SocioCoherente (actividades = [], maximoDeActividades = 3, edad = 24, idiomasHablados = #{"ingles", "filipino"})
 
+    //Viajes / Actividades:
+        const marDelPlata = new ViajePlaya (idiomasUsados = #{"español", "ingles", "portugues"}, largo = 45)
+        const caba        = new ExcursionCiudad (idiomasUsados = #{"español", "ingles"}, cantidadAtracciones = 12)
+        const miami       = new ExcursionCiudadTropical (idiomasUsados = #{"español", "ingles"}, cantidadAtracciones = 15)
+        const tandil      = new SalidaTrekking (idiomasUsados = #{"ingles", "filipino"}, kilometros = 1423, diasDeSol = 156)
+        const gym         = new Gimnacia (idiomasUsados = #{"español"})
+        const taller      = new TallerLiterario (idiomasUsados = #{}, libros = #{})
+    
+    //Libros:
+        const orgulloYprejuicio = new Libro (idioma = #{"ingles"}, cantidadPaginas = 400, autor = "jane austen")
+        const it                = new Libro (idioma = #{"español"}, cantidadPaginas = 658, autor = "stepehn king")
+        const petalos           = new Libro (idioma = #{"portugues"},cantidadPaginas = 358, autor = "jane austen")
+
+    test "actividades recomendadas para socios" {
+        assert.that(marDelPlata.esRecomendadaPara(megan))
+        assert.that(caba.esRecomendadaPara(daniela))
+        assert.that(miami.esRecomendadaPara(manon))
+        assert.that(tandil.esRecomendadaPara(lara))
+        assert.notThat(gym.esRecomendadaPara(yoonchae))
+    }
 }
